@@ -8,4 +8,6 @@ public interface SportService {
 
 	Collection<AppSport> getAllSports();
 	
+	void createSport(AppSport appSport);
+	
 }

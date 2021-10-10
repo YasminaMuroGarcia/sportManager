@@ -3,14 +3,24 @@ package com.sportManager.application.converter.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sportManager.application.api.model.AppSport;
 import com.sportManager.application.converter.SportDomainAppConverter;
 import com.sportManager.domain.api.model.Sport;
+import com.sportManager.domain.api.model.factory.SportFactory;
 
 @Component
 class SportDomainAppConverterImpl implements SportDomainAppConverter {
+	
+	private	final SportFactory sportFactory;
+	
+	@Autowired
+	public SportDomainAppConverterImpl(
+			final SportFactory sportFactory) {
+		this.sportFactory = sportFactory;
+	}
 
 	@Override
 	public AppSport convertDomainToApp(final Sport sport) {
@@ -33,6 +43,19 @@ class SportDomainAppConverterImpl implements SportDomainAppConverter {
 			appSports.add(this.convertDomainToApp(sport));
 		}
 		return appSports;
+	}
+
+	@Override
+	public Sport convertAppToDomain(AppSport appSport) {
+		if (appSport == null) {
+			throw new IllegalArgumentException("Sport to be converted must not be null!");
+		}
+		final Sport sport = this.sportFactory.makeSport();
+		sport.setName(appSport.getName());
+		if(appSport.getId() != 0) {
+			sport.setId(appSport.getId());
+		}
+		return sport;
 	}
 
 }

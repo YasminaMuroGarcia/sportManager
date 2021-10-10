@@ -32,4 +32,10 @@ class SportServiceImpl implements SportService {
 		return this.sportConverter.convertDomainsToApps(sports);
 	}
 
+	@Override
+	public void createSport(final AppSport appSport) {
+		final Sport sport = this.sportConverter.convertAppToDomain(appSport);
+		this.sportDao.addSport(sport);
+	}
+
 }

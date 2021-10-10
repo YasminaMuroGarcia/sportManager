@@ -4,8 +4,13 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.sportManager.application.api.model.AppSport;
 import com.sportManager.application.api.service.SportService;
@@ -13,7 +18,8 @@ import com.sportManager.ui.URLContract;
 import com.sportManager.ui.converter.SportAppViewModelConverter;
 import com.sportManager.ui.viewModel.SportViewModel;
 
-@Controller
+@CrossOrigin(origins = "http://localhost:3000" )
+@RestController
 public class SportController {
 	
 	private final SportService sportService;
@@ -32,5 +38,11 @@ public class SportController {
 	public Collection<SportViewModel> getAllSports() {
 		final Collection<AppSport> appSports = this.sportService.getAllSports();
 		return this.sportConverter.convertAppsToViewModels(appSports);
+	}
+	
+	@PostMapping(URLContract.CREATE_SPORT_URL)
+	public void addSport(@RequestBody final SportViewModel vMSport) {
+		final AppSport appSport = this.sportConverter.convertViewModelToApp(vMSport);
+		this.sportService.createSport(appSport);
 	}
 }

@@ -35,4 +35,20 @@ class SportAppViewModelConverterImpl implements SportAppViewModelConverter {
 		return sportsVms;
 	}
 
+	@Override
+	public AppSport convertViewModelToApp(SportViewModel vMSport) {
+		if(vMSport == null) {
+			throw new IllegalArgumentException("Sport to be converted must not be null!");
+		}
+		final AppSport appSport = new AppSport();
+		try{
+			appSport.setId(Long.parseLong(vMSport.getId()));
+		}catch (NumberFormatException e) {
+			appSport.setId(0);
+			//Put 0 as no id
+		}
+		appSport.setName(vMSport.getName());
+		return appSport;
+	}
+
 }

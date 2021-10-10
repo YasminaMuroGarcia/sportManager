@@ -10,4 +10,6 @@ public interface SportAppViewModelConverter {
 	SportViewModel convertAppToViewModel(AppSport appSport);
 
 	Collection<SportViewModel> convertAppsToViewModels(Collection<AppSport> appSports);
+	
+	AppSport convertViewModelToApp(SportViewModel vMSport);
 }

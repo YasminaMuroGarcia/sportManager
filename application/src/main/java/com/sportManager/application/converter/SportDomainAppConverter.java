@@ -10,5 +10,7 @@ public interface SportDomainAppConverter {
 	AppSport convertDomainToApp(Sport sport);
 	
 	Collection<AppSport> convertDomainsToApps(Collection<Sport> sports);
+	
+	Sport convertAppToDomain(AppSport appSport);
 
 }
