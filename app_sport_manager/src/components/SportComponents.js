@@ -108,16 +108,6 @@ class SportComponents extends React.Component{
                             }
                     </tbody>
                 </table>
-                <div>
-                    <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Sport Name:
-                        <input type="text" name="name" onChange={this.handleChange} />
-                    </label>
-                    <button type="submit">Add</button>
-                    </form>
-                </div>
-
                 <div>                 
                     
                 </div>
