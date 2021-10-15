@@ -8,57 +8,38 @@ class SportComponents extends React.Component{
 
     constructor(props){
         super(props)
-        this.handleShow = this.handleShow.bind(this);
-        this.handleClose = this.handleClose.bind(this);
+        this.addCreatedSport = this.addCreatedSport.bind(this);
         this.state ={
             sports:[] ,
-            name: '' ,
-            show : false,
-            
             
         }
     };
   
     modalSportRef = (obj) => {
         this.showModal = obj && obj.handleShow;
-      }
+    }
      
-      addSportClick = () => {
-       this.showModal();
-      }
-
-    handleChange = event => {
-        this.setState({ name: event.target.value });
+    addSportClick = () => {
+        this.showModal();
     }
 
-    handleShow() {
-        this.setState({ show: true })
-    }
-    handleClose(){
-        this.setState({ show: false })
+    addCreatedSport(newSport){
+        const updatedSports = this.state.sports.concat(newSport);
+        this.setState({sports: updatedSports});
     }
 
-    handleSubmit = event => {
-        event.preventDefault();
-    
-        const sport = {
-            name: this.state.name
-        };
-        console.log(sport)
-        sportServices.create(sport);
-    }
     componentDidMount(){
         sportServices.getSports().then((Response)=>{
             this.setState({sports:Response.data})
         });
-        
-        
-        // Simple POST request with a JSON body using axios
-        // const article = { title: 'React POST Request Example' };
-        // axios.post('https://reqres.in/api/articles', article)
-        //     .then(Response => this.setState({ sports:Response.data.id }));
     }
-    
+    //Bucle infinito de solicitudes get al servidor para pedir los deportes
+    /* componentDidUpdate(){
+        sportServices.getSports().then((Response)=>{
+            this.setState({sports:Response.data})
+        });
+    } */
+  
 
     render(){
 
@@ -80,7 +61,8 @@ class SportComponents extends React.Component{
                
                 
                 <h1 className = "text-center">Sport List</h1>
-                <ModalSport ref={this.modalSportRef} ></ModalSport>
+                <ModalSport ref={this.modalSportRef} addCreatedSport={this.addCreatedSport}  ></ModalSport>
+
 
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-secondary" onClick={this.addSportClick}>Add Sport</button>

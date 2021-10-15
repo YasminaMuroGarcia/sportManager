@@ -8,6 +8,6 @@ public interface SportRepository{
 	
 	List<? extends Sport> getAllSports();
 	
-	 void addSport(Sport sport);
+	 Long addSport(Sport sport);
 
 }

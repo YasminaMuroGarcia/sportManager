@@ -41,8 +41,10 @@ public class SportController {
 	}
 	
 	@PostMapping(URLContract.CREATE_SPORT_URL)
-	public void addSport(@RequestBody final SportViewModel vMSport) {
+	@ResponseBody
+	public SportViewModel addSport(@RequestBody final SportViewModel vMSport) {
 		final AppSport appSport = this.sportConverter.convertViewModelToApp(vMSport);
-		this.sportService.createSport(appSport);
+		final AppSport createdSport =  this.sportService.createSport(appSport);
+		return this.sportConverter.convertAppToViewModel(createdSport);
 	}
 }

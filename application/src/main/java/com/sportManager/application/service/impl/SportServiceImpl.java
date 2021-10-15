@@ -33,9 +33,11 @@ class SportServiceImpl implements SportService {
 	}
 
 	@Override
-	public void createSport(final AppSport appSport) {
+	public AppSport createSport(final AppSport appSport) {
 		final Sport sport = this.sportConverter.convertAppToDomain(appSport);
-		this.sportDao.addSport(sport);
+		final Long id = this.sportDao.addSport(sport);
+		appSport.setId(id);
+		return appSport;
 	}
 
 }

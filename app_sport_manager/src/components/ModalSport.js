@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Modal,Button } from "react-bootstrap";
 import sportServices from "../services/SportServices";
+
+
 class ModalSport extends Component{
 
     constructor(props){
@@ -8,10 +10,13 @@ class ModalSport extends Component{
       this.handleShow = this.handleShow.bind(this);
       this.handleClose = this.handleClose.bind(this);
       this.state = {
-        show: false
+        show: false,
+        name: '' 
       }
+      
     };
 
+    
     handleChange = event => {
       this.setState({ name: event.target.value });
     }
@@ -25,30 +30,34 @@ class ModalSport extends Component{
 
     handleSubmit = event => {
       event.preventDefault();
-  
-      const sport = {
-          name: this.state.name
-      };
-      console.log(sport)
-      sportServices.create(sport);
+      const sport = { name : this.state.name};
+      sportServices.create(sport).then((Response)=>{
+        var addCreatedSport = this.props.addCreatedSport;
+        console.log(Response.data);
+        addCreatedSport(Response.data);
+      });
       this.setState({ show: false })
   }
+
+  
 
     render(){
         return(
           <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
-          <Modal.Title>Modal Heading</Modal.Title>
+          <Modal.Title>Create Sport</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!
-          <form>
-                    <label>
-                        Sport Name:
-                        <input type="text" name="name" onChange={this.handleChange} />
-                    </label>
-                    </form>
-
-
+          <Modal.Body>
+            <form>
+              <div class="form-group row">
+                  <label  class="col-sm-2 col-form-label">
+                      Name*
+                  </label>
+                  <div class="col-sm-10">
+                          <input class="form-control" type="text" name="name" onChange={this.handleChange} /> 
+                  </div>
+              </div>
+            </form>
           </Modal.Body>
           <Modal.Footer>
           

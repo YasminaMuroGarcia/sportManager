@@ -40,12 +40,14 @@ class SportRepositoryImpl implements SportRepository{
 
 	@Override
 	@Transactional
-	public void addSport(Sport sport) {
+	public Long addSport(Sport sport) {
 		final Session session = this.sessionFactory.openSession();
 		final Transaction tx = session.beginTransaction();
-		session.save((SportImpl) sport);
+		Long id = (Long) session.save((SportImpl) sport);
 		tx.commit();
 		session.close();
+		return id;
 	}
+	
 
 }
