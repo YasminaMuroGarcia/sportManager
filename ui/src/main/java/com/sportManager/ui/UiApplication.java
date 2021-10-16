@@ -5,11 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
 import com.sportManager.application.ApplicationConfig;
-import com.sportManager.domain.DomainConfig;
-import com.sportManager.persistence.PersistenceConfig;
+import com.sportManager.infrastructure.InfrastructureConfig;
+import com.sportManager.model.ModelConfig;
 
 @SpringBootApplication
-@Import({UiConfig.class, ApplicationConfig.class, DomainConfig.class, PersistenceConfig.class})
+@Import({UiConfig.class, ApplicationConfig.class, ModelConfig.class, InfrastructureConfig.class})
 public class UiApplication {
 
 	public static void main(String[] args) {

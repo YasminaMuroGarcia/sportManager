@@ -3,7 +3,7 @@ package com.sportManager.application.converter;
 import java.util.Collection;
 
 import com.sportManager.application.api.model.AppSport;
-import com.sportManager.domain.api.model.Sport;
+import com.sportManager.model.api.Sport;
 
 public interface SportDomainAppConverter {
 	

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 import com.sportManager.application.api.model.AppSport;
 import com.sportManager.application.converter.SportDomainAppConverter;
-import com.sportManager.domain.api.model.Sport;
-import com.sportManager.domain.api.model.factory.SportFactory;
+import com.sportManager.model.api.Sport;
+import com.sportManager.model.api.SportFactory;
 
 @Component
 class SportDomainAppConverterImpl implements SportDomainAppConverter {

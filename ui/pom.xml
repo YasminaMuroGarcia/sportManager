@@ -36,13 +36,7 @@
 		
 		<dependency>
 			<groupId>com.sportManager</groupId>
-			<artifactId>domain</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.sportManager</groupId>
-			<artifactId>persistence</artifactId>
+			<artifactId>infrastructure</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
