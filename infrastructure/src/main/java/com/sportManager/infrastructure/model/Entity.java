@@ -1,9 +1,11 @@
 package com.sportManager.infrastructure.model;
 
+import java.util.UUID;
+
 public interface Entity {
 	
-	Long getId();
+	UUID getId();
 	
-	void setId(Long id);
+	void setId(UUID id);
 
 }

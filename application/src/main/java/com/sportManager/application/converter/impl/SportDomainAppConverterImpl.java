@@ -52,7 +52,7 @@ class SportDomainAppConverterImpl implements SportDomainAppConverter {
 		}
 		final Sport sport = this.sportFactory.makeSport();
 		sport.setName(appSport.getName());
-		if(appSport.getId() != 0) {
+		if(appSport.getId() != null) {
 			sport.setId(appSport.getId());
 		}
 		return sport;

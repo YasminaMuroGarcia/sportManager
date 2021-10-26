@@ -33,14 +33,7 @@ class SportComponents extends React.Component{
             this.setState({sports:Response.data})
         });
     }
-    //Bucle infinito de solicitudes get al servidor para pedir los deportes
-    /* componentDidUpdate(){
-        sportServices.getSports().then((Response)=>{
-            this.setState({sports:Response.data})
-        });
-    } */
   
-
     render(){
 
         return(

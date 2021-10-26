@@ -2,6 +2,7 @@ package com.sportManager.application.service.impl;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -35,7 +36,7 @@ class SportServiceImpl implements SportService {
 	@Override
 	public AppSport createSport(final AppSport appSport) {
 		final Sport sport = this.sportConverter.convertAppToDomain(appSport);
-		final Long id = this.sportDao.addSport(sport);
+		final UUID id = this.sportDao.addSport(sport);
 		appSport.setId(id);
 		return appSport;
 	}

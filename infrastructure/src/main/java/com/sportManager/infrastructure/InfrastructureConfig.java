@@ -4,7 +4,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan({})
+@ComponentScan({"com.sportManager.infrastructure.model.impl"})
 public class InfrastructureConfig {
 
 }

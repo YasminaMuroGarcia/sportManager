@@ -1,12 +1,16 @@
 package com.sportManager.model.impl;
 
 
+import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import com.sportManager.model.api.Sport;
 
@@ -14,18 +18,21 @@ import com.sportManager.model.api.Sport;
 @Table( name = "sports") 
 class SportImpl implements Sport{
 
+	@Id
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
+    @Type(type = "uuid-char")
+    private UUID id;
+	
 	@Column( name = "name")
 	private String name;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column( name = "id")
-	private Long id;
 	
 	public SportImpl() {
 	}
 	
-	SportImpl(String name, Long id) {
+	SportImpl(final String name, final UUID id) {
 		super();
 		this.name = name;
 		this.id = id;
@@ -42,12 +49,12 @@ class SportImpl implements Sport{
 	}
 
 	@Override
-	public Long getId() {
+	public UUID getId() {
 		return this.id;
 	}
 
 	@Override
-	public void setId(final Long id) {
+	public void setId(final UUID id) {
 		this.id = id;
 		
 	}

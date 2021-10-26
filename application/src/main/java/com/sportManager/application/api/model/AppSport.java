@@ -1,16 +1,18 @@
 package com.sportManager.application.api.model;
 
+import java.util.UUID;
+
 public class AppSport {
 	
-	private long id;
+	private UUID id;
 	private String name;
 	
-	public long getId() {
+	public UUID getId() {
 		return id;
 	}
 	
-	public void setId(long id) {
-		this.id = id;
+	public void setId(UUID uuid) {
+		this.id = uuid;
 	}
 	
 	public String getName() {

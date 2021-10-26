@@ -2,6 +2,7 @@ package com.sportManager.ui.converter.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
@@ -18,7 +19,7 @@ class SportAppViewModelConverterImpl implements SportAppViewModelConverter {
 			throw new IllegalArgumentException("Sport to be converted must not be null!");
 		}
 		final SportViewModel vmSport = new SportViewModel();
-		vmSport.setId(String.valueOf(appSport.getId()));
+		vmSport.setId((appSport.getId().toString()));
 		vmSport.setName(appSport.getName());
 		return vmSport;
 	}
@@ -42,10 +43,8 @@ class SportAppViewModelConverterImpl implements SportAppViewModelConverter {
 		}
 		final AppSport appSport = new AppSport();
 		try{
-			appSport.setId(Long.parseLong(vMSport.getId()));
-		}catch (NumberFormatException e) {
-			appSport.setId(0);
-			//Put 0 as no id
+			appSport.setId(UUID.fromString(vMSport.getId()));
+		}catch (Exception e) {
 		}
 		appSport.setName(vMSport.getName());
 		return appSport;

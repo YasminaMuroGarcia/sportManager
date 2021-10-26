@@ -1,6 +1,7 @@
 package com.sportManager.model.impl;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -39,10 +40,10 @@ class SportRepositoryImpl implements SportRepository{
 
 	@Override
 	@Transactional
-	public Long addSport(Sport sport) {
+	public UUID addSport(Sport sport) {
 		final Session session = this.sessionFactory.openSession();
 		final Transaction tx = session.beginTransaction();
-		Long id = (Long) session.save((SportImpl) sport);
+		UUID id = (UUID) session.save((SportImpl) sport);
 		tx.commit();
 		session.close();
 		return id;
