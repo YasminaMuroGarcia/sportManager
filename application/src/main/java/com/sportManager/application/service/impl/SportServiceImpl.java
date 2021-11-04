@@ -16,27 +16,27 @@ import com.sportManager.model.api.repository.SportRepository;
 @Component
 class SportServiceImpl implements SportService {
 	
-	private final SportRepository sportDao;
+	private final SportRepository sportRepo;
 	private final SportDomainAppConverter sportConverter;
 
 	@Autowired
 	public SportServiceImpl(
 			final SportRepository sportDao,
 			final SportDomainAppConverter sportConverter) {
-		this.sportDao = sportDao;
+		this.sportRepo = sportDao;
 		this.sportConverter = sportConverter;
 	}
 	
 	@Override
 	public Collection<AppSport> getAllSports() {
-		List<Sport> sports = (List<Sport>) this.sportDao.getAllSports();
+		List<Sport> sports = (List<Sport>) this.sportRepo.getAllSports();
 		return this.sportConverter.convertDomainsToApps(sports);
 	}
 
 	@Override
 	public AppSport createSport(final AppSport appSport) {
 		final Sport sport = this.sportConverter.convertAppToDomain(appSport);
-		final UUID id = this.sportDao.addSport(sport);
+		final UUID id = this.sportRepo.addSport(sport);
 		appSport.setId(id);
 		return appSport;
 	}

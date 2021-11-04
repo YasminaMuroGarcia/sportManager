@@ -1,10 +1,10 @@
 import './App.css';
-import SportComponents from './components/SportComponents';
+import SportHomePage from './components/SportHomePage';
 
 function App() {
   return (
     <div className="App">
-      <SportComponents/>
+      <SportHomePage/>
     </div>
   );
 }

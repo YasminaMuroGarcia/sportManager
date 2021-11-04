@@ -29,7 +29,7 @@ class SportComponents extends React.Component{
     }
 
     componentDidMount(){
-        sportServices.getSports().then((Response)=>{
+        sportServices.getAll().then((Response)=>{
             this.setState({sports:Response.data})
         });
     }
@@ -80,7 +80,7 @@ class SportComponents extends React.Component{
                                     <td>{sport.name}</td>
                                 </tr>
                             )
-                            }
+                        }
                     </tbody>
                 </table>
                 <div>                 
